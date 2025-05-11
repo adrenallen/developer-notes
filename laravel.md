@@ -1,7 +1,7 @@
-# Laravel related dev notes
+Everything in here is Laravel related
 
-## Delayed Jobs
-### Dispatching jobs via artisan tinker
+# Delayed Jobs
+## Dispatching jobs via artisan tinker
 
 Requires calling Bus directly due to weirdness in how tinker handles dispatch facade
 
@@ -10,7 +10,7 @@ Bus::dispatch(new Job())
 ```
 
 
-### Laravel's retry_after and Long-Running Jobs: Avoiding Duplicate Processing
+## Laravel's retry_after and Long-Running Jobs: Avoiding Duplicate Processing
 
 Laravel's retry_after setting in config/queue.php (per connection) specifies how long a worker will wait before re-queueing a job that hasn't been completed or explicitly failed.
 
@@ -38,3 +38,24 @@ in SomeJob.php
 
 $retryAfter => If the job fails, retry it after x seconds.
 
+# Environment setup
+## Sail alias shortcut w/Docker
+For new setups you might not have sail yet so here's a docker copy paster
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php84-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
+
+# File Uploads
+## Uploads not working with default storage facades
+
+You need to link storage before it will work, sometimes this may not surface as an exception properly.
+
+```bash
+sail artisan storage:link
+```
