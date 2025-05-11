@@ -1,6 +1,15 @@
 # Laravel related dev notes
 
 ## Delayed Jobs
+### Dispatching jobs via artisan tinker
+
+Requires calling Bus directly due to weirdness in how tinker handles dispatch facade
+
+```php
+Bus::dispatch(new Job())
+```
+
+
 ### Laravel's retry_after and Long-Running Jobs: Avoiding Duplicate Processing
 
 Laravel's retry_after setting in config/queue.php (per connection) specifies how long a worker will wait before re-queueing a job that hasn't been completed or explicitly failed.
