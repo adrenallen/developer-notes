@@ -60,9 +60,29 @@ You need to link storage before it will work, sometimes this may not surface as 
 sail artisan storage:link
 ```
 
+# Developer tools
+## Pre-commit dev checks
+See a pre-configured command `artisan dev:check` located under `artisan-dev-check` folder.
+
+This command will run the expected default laravel github action tests for an inertia+react+laravel setup.
+
+If you run into issues with a Feature/ExampleTest failure, you likely need to add a database refresh to the top of the test, like this
+
+```php
+<?php
+
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+
+it('returns a successful response', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+});
+```
+
 # User Registration/Creation
 ## Prevent disposable emails
-Check the file located under `/laravel/disposable_emails` folder.
+Check the file located under `/laravel/disposable-emails` folder.
 
 `NotDisposableEmail.php` is a Laravel Rule that will check the attached `disposable_email_blocklist.txt` for if the user is trying to register with a domain that is just a disposable email.
 
