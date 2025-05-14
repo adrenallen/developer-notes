@@ -59,3 +59,20 @@ You need to link storage before it will work, sometimes this may not surface as 
 ```bash
 sail artisan storage:link
 ```
+
+# User Registration/Creation
+## Prevent disposable emails
+Check the file located under `/laravel/disposable_emails` folder.
+
+`NotDisposableEmail.php` is a Laravel Rule that will check the attached `disposable_email_blocklist.txt` for if the user is trying to register with a domain that is just a disposable email.
+
+You can drop this into the Register endpoint (probabably under `RegisteredUserController`)
+
+It should look something like this
+```php
+$request->validate([
+    'name' => 'required|string|max:255',
+    'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class, new NotDisposableEmail],
+    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+]);
+```
