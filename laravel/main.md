@@ -1,5 +1,8 @@
 Everything in here is Laravel related
 
+# Server Setup Quick Script
+Checkout `cursed-server-setup.sh` for a laravel + inertia + react + postgres quick setup script for ubuntu
+
 # Delayed Jobs
 ## Dispatching jobs via artisan tinker
 
