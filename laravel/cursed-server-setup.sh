@@ -115,7 +115,7 @@ sudo systemctl start nginx
 STEP "php_install" '
 sudo add-apt-repository ppa:ondrej/php -y &&
 sudo apt update &&
-sudo apt install -y php'"$PHP_VERSION"' php'"$PHP_VERSION"'-fpm php'"$PHP_VERSION"'-cli php'"$PHP_VERSION"'-mbstring php'"$PHP_VERSION"'-xml php'"$PHP_VERSION"'-curl php'"$PHP_VERSION"'-pgsql php'"$PHP_VERSION"'-bcmath php'"$PHP_VERSION"'-zip php'"$PHP_VERSION"'-gd php'"$PHP_VERSION"'-common &&
+sudo apt install -y php'"$PHP_VERSION"' php'"$PHP_VERSION"'-fpm php'"$PHP_VERSION"'-cli php'"$PHP_VERSION"'-mbstring php'"$PHP_VERSION"'-xml php'"$PHP_VERSION"'-curl php'"$PHP_VERSION"'-pgsql php'"$PHP_VERSION"'-sqlite3 php'"$PHP_VERSION"'-bcmath php'"$PHP_VERSION"'-zip php'"$PHP_VERSION"'-gd php'"$PHP_VERSION"'-common &&
 sudo systemctl enable php'"$PHP_VERSION"'-fpm &&
 sudo systemctl start php'"$PHP_VERSION"'-fpm
 '
@@ -358,13 +358,6 @@ server {
     # Deny access to hidden files
     location ~ /\.(?!well-known).* {
         deny all;
-    }
-
-    # Static assets caching
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|otf)\$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-        log_not_found off;
     }
 
     # Deny access to sensitive files
