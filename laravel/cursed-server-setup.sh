@@ -287,7 +287,7 @@ fi
 STEP "permissions_config" '
 sudo chown -R "$LINUX_USER":www-data "$APP_PATH" &&
 sudo find "$APP_PATH" -type d -exec chmod 755 {} \; &&
-sudo find "$APP_PATH" -type f -exec chmod 644 {} \; &&
+sudo find "$APP_PATH" -path "$APP_PATH/node_modules" -prune -o -type f -exec chmod 644 {} \; &&
 if [[ -d "$APP_PATH/storage" ]]; then
     sudo chmod -R 775 "$APP_PATH/storage" &&
     sudo chown -R "$LINUX_USER":www-data "$APP_PATH/storage"
