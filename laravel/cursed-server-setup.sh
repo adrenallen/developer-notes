@@ -45,7 +45,7 @@ cat << "EOF"
 ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝     
 EOF
 
-echo -e "${PURPLE}🔮 Welcome to the most CURSED Laravel setup script ever written! 🔮${NC}"
+echo -e "${PURPLE}🔮 Welcome to CURSED Laravel setup! 🔮${NC}"
 echo -e "${CYAN}💀 This script will summon a Laravel app from the digital void 💀${NC}"
 echo -e "${YELLOW}⚡ Hold onto your keyboard, we're about to break the laws of DevOps! ⚡${NC}"
 echo ""
@@ -69,21 +69,21 @@ prompt_if_empty() {
 
 # 📝 Time to collect your digital soul fragments (configuration)
 echo -e "${PURPLE}🧙‍♂️ Let's gather the mystical configuration ingredients...${NC}"
-prompt_if_empty "APP_NAME" "🚀 What shall we name this beautiful disaster? (e.g. searchcarriers)"
-prompt_if_empty "LINUX_USER" "👤 Who's the chosen one? (Linux user to create/manage, e.g. laravel)"
-prompt_if_empty "DB_NAME" "🗄️ What's the name of your data prison? (PostgreSQL database name)"
-prompt_if_empty "DB_USER" "🔐 Who gets the keys to the data kingdom? (PostgreSQL database user)"
+prompt_if_empty "APP_NAME" "🚀 Enter your app name (e.g. searchcarriers)"
+prompt_if_empty "LINUX_USER" "👤 Enter Linux user to create/manage (e.g. laravel)"
+prompt_if_empty "DB_NAME" "🗄️ Enter PostgreSQL database name"
+prompt_if_empty "DB_USER" "🔐 Enter PostgreSQL database user"
 
 if [[ -z "$DB_PASS" ]]; then
-    read -s -p "🔒 Whisper the secret incantation (PostgreSQL password for user '$DB_USER'): " DB_PASS
+    read -s -p "🔒 Enter PostgreSQL password for user '$DB_USER': " DB_PASS
     echo ""
     echo "DB_PASS=\"$DB_PASS\"" >> "$VARS_FILE"
 fi
 
-prompt_if_empty "GIT_REPO" "📦 Where's your code treasure buried? (Git repo SSH URL to clone)"
+prompt_if_empty "GIT_REPO" "📦 Enter Git repo SSH URL to clone"
 
 if [[ -z "$DOMAIN_NAME" ]]; then
-    read -p "🌐 Got a fancy domain name? (leave blank if you're too cool for domains): " DOMAIN_NAME
+    read -p "🌐 Enter domain name (leave blank for default): " DOMAIN_NAME
     echo "DOMAIN_NAME=\"$DOMAIN_NAME\"" >> "$VARS_FILE"
 fi
 
@@ -501,7 +501,7 @@ echo ""
 echo -e "${PURPLE}🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉${NC}"
 echo -e "${GREEN}💀 THE RITUAL IS COMPLETE! 💀${NC}"
 echo -e "${CYAN}🔮 Your cursed Laravel app '$APP_NAME' has been summoned from the digital void! 🔮${NC}"
-echo -e "${YELLOW}🌐 Behold its earthly manifestation: http://$(curl -s ifconfig.me) 🌐${NC}"
+echo -e "${YELLOW}🌐 Behold its earthly manifestation: http://$(curl -4 -s ifconfig.me) 🌐${NC}"
 if [[ -n "$DOMAIN_NAME" ]]; then
     echo -e "${PURPLE}🏰 Or visit its noble domain: http://$DOMAIN_NAME 🏰${NC}"
 fi
@@ -513,6 +513,5 @@ echo -e "${CYAN}   🏰 Configure thy domain's DNS to point to this mystical ser
 echo -e "${GREEN}   🔒 Bind SSL/TLS magic with: sudo certbot --nginx${NC}"
 echo -e "${PURPLE}   ⚙️ Review thy Laravel .env scrolls for any remaining secrets${NC}"
 echo -e "${YELLOW}   💾 Establish backup rituals for thy database and sacred files${NC}"
-echo -e "${RED}   ⏰ The Laravel scheduler now awakens every minute like clockwork${NC}"
 echo ""
 echo -e "${PURPLE}🧙‍♂️ May your Laravel app serve you well, master of the digital arts! 🧙‍♂️${NC}"
